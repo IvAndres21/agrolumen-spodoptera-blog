@@ -1,0 +1,8 @@
+.DS_Store
+.Rhistory
+*.swp
+*.swo
+*.bak
+.idea/
+.vscode/
+Thumbs.db
