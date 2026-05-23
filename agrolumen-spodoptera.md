@@ -255,7 +255,7 @@ Build and flash:
 
 ```bash
 # Clone the firmware repo
-git clone https://github.com/your-org/spodoptera.git
+git clone https://github.com/IvAndres21/spodoptera.git
 cd spodoptera/firmware
 
 # Create your secrets file from the template
@@ -313,7 +313,7 @@ agrolumen-spodoptera-blog/
 └── agrolumen-spodoptera-demo.mp4
 ```
 
-The full firmware + web codebase lives in a separate repository:
+The full firmware + web codebase lives in a separate repository at [github.com/IvAndres21/spodoptera](https://github.com/IvAndres21/spodoptera):
 
 ```plaintext
 spodoptera/
@@ -356,7 +356,7 @@ This project is released under the **MIT License**. The MYOSA platform and its l
 
 ## Contribution Notes
 
-We welcome issues and pull requests on the [main repository](https://github.com/) — particularly around:
+We welcome issues and pull requests on the [main project repository](https://github.com/IvAndres21/spodoptera) — particularly around:
 
 - Adding INA219 power monitoring for battery-backed deployments
 - Tuning the IR sensor's debounce and threshold for different insect sizes
