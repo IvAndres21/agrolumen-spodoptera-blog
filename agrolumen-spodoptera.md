@@ -81,6 +81,11 @@ The result is not just a trap, but an **ecological monitoring station**: data on
   <i>SSD1306 OLED display in the BMP view, showing live readings from the trap — date/time from the DS1307 RTC, temperature, pressure, and the current LED / Fan states. A front-panel button cycles between this view, an operating-windows view, and STA connectivity info.</i>
 </p>
 
+<p align="center">
+  <img src="./dashboard-hero.png" width="800"><br/>
+  <i>Landing page of the public dashboard at <a href="https://spodoptera.vercel.app">spodoptera.vercel.app</a>. Branded for the MYOSA Contest 2026 entry from Universidad del Magdalena, with direct entry points to the live dashboard and to the MYOSA blog.</i>
+</p>
+
 ### Videos
 
 MYOSA 5.0 requires two videos: a **recorded presentation** (max 5 min) and a **demo video** (max 3 min). Both are included below.
@@ -115,6 +120,11 @@ The ESP32 simultaneously exposes a local Access Point (`MYOSA_BoardServer`) for 
 
 The dual mode runs only while inside the AP operating window — outside that window the radio is shut down to save power.
 
+<p align="center">
+  <img src="./local-wifi-config.jpg" width="800"><br/>
+  <i>Local dashboard "Connectivity" tab — served by the ESP32 itself at <code>http://192.168.4.1</code>. Operators connect from a phone, see the current STA status (here: disabled), and configure router credentials in the field without re-flashing the device.</i>
+</p>
+
 ### **2. Programmable operating windows**
 
 Five subsystems run on **independent, configurable time ranges** persisted in NVS:
@@ -129,6 +139,16 @@ Five subsystems run on **independent, configurable time ranges** persisted in NV
 
 Each window is fully editable from the dashboard and supports overnight ranges (e.g., 19:30 → 04:00 is correctly evaluated across midnight). Changes are written to `Preferences` (NVS) so they survive deep sleep and power cycles.
 
+<p align="center">
+  <img src="./dashboard-windows.png" width="800"><br/>
+  <i>"Configured operating windows" card on the public dashboard. Each subsystem (Attractor LED, Access Point, Fan, SD Storage) has an independent start/end schedule, plus the global fan duration and detection threshold.</i>
+</p>
+
+<p align="center">
+  <img src="./local-config-windows.jpg" width="800"><br/>
+  <i>Same operating-window configuration, but from the ESP32-served local dashboard. Each schedule is editable on-site via the SD-served UI when there is no internet — perfect for first-time setup in the field.</i>
+</p>
+
 ### **3. Three storage modes with resilient cloud sync**
 
 The user can switch between three storage policies from the dashboard at any time:
@@ -138,6 +158,11 @@ The user can switch between three storage policies from the dashboard at any tim
 - **`BOTH`** — both at once, redundant.
 
 If the Wi-Fi link drops during `CLOUD` or `BOTH` mode, the firmware **queues unsent rows to an SD-backed buffer** (`/Pending/queue.csv`). When the STA link comes back, the buffer is flushed in order — replaying the timestamp-original measurements without data loss.
+
+<p align="center">
+  <img src="./local-storage-mode.jpg" width="800"><br/>
+  <i>Storage-mode selector on the local dashboard. The operator picks Local (SD only), Cloud (Vercel + Neon), or Both, and sets the device ID + X-Device-Key that authenticates uploads against the backend.</i>
+</p>
 
 ### **4. Near real-time cloud push**
 
@@ -177,6 +202,16 @@ The public dashboard at [spodoptera.vercel.app](https://spodoptera.vercel.app) s
 
 Updates land within ~12 s of the physical event (2 s push interval + 10 s dashboard poll), which is well below the timescale of nocturnal insect activity.
 
+<p align="center">
+  <img src="./dashboard-realtime.png" width="800"><br/>
+  <i>"Real-time data" view: the three environmental cards (temperature, pressure, altitude), the actuator state cards, and the operating-windows status pills. All four subsystems showing ACTIVE means the trap is currently inside every scheduled window simultaneously.</i>
+</p>
+
+<p align="center">
+  <img src="./dashboard-history.png" width="800"><br/>
+  <i>"Recent history" chart powered by Recharts, plotting the last 100 measurements (temperature, pressure, altitude) on a synchronized dual axis. Hovering reveals the exact reading at that timestamp — here, 12:22 PM with 26.92 °C, 100.8968 hPa, and 35.81 m altitude.</i>
+</p>
+
 ### **9. Multi-task FreeRTOS architecture**
 
 The firmware runs three pinned FreeRTOS tasks:
@@ -186,6 +221,15 @@ The firmware runs three pinned FreeRTOS tasks:
 - **`taskComm`** (Core 0, priority 1) — Wi-Fi, HTTP server, cloud push, SD logging, deep-sleep check
 
 I²C is protected with a `xSemaphoreCreateMutex` to avoid contention between the UI and control paths.
+
+### **10. Local dashboard served from the SD card**
+
+In parallel with the cloud dashboard, the ESP32 hosts a **full local web UI directly from its SD card** at `http://192.168.4.1`. This means everything you can do remotely — view sensor readings, change operating windows, switch storage mode, override LED / fan manually, configure Wi-Fi credentials — is also doable on-site from a phone, **even with no internet at all**. The HTML / CSS / JS are streamed from the SD card on demand, so the UI can be updated without re-flashing the firmware: just drop new files on the SD.
+
+<p align="center">
+  <img src="./local-dashboard.jpg" width="800"><br/>
+  <i>Landing view of the SD-served dashboard. Three tabs (Dashboard / Configuration / Connectivity) cover the full feature set, and the live sensor readings — here, 31.93 °C and 1008.73 hPa — come from the ESP32 itself, not from a remote API.</i>
+</p>
 
 ---
 
