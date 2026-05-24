@@ -83,6 +83,20 @@ The result is not just a trap, but an **ecological monitoring station**: data on
 
 ### Videos
 
+MYOSA 5.0 requires two videos: a **recorded presentation** (max 5 min) and a **demo video** (max 3 min). Both are included below.
+
+#### **Recorded presentation (5 min)**
+
+<video controls width="100%">
+  <source src="./agrolumen-spodoptera-presentation.mp4" type="video/mp4">
+</video>
+
+📹 If the video player above does not render in your viewer, watch the presentation directly here: [agrolumen-spodoptera-presentation.mp4](./agrolumen-spodoptera-presentation.mp4)
+
+Formal walkthrough of the project: motivation, hardware and software architecture, integration with the MYOSA platform, and outcomes.
+
+#### **Demo video (3 min)**
+
 <video controls width="100%">
   <source src="./agrolumen-spodoptera-demo.mp4" type="video/mp4">
 </video>
