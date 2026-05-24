@@ -88,8 +88,6 @@ The result is not just a trap, but an **ecological monitoring station**: data on
 
 ### Videos
 
-MYOSA 5.0 requires two videos: a **recorded presentation** (max 5 min) and a **demo video** (max 3 min). Both are included below.
-
 #### **Recorded presentation (5 min)**
 
 <video controls width="100%">
