@@ -57,35 +57,37 @@ The result is not just a trap, but an **ecological monitoring station**: data on
 ### Images
 
 <p align="center">
-  <img src="/assets/images/AgroLumen_Spodoptera/trap-assembled-front.jpg" width="800"><br/>
+  <img src="./trap-assembled-front.jpg" width="800"><br/>
   <i>Assembled prototype — PVC structural frame, 3D-printed upper enclosure housing the electronics and capture fan, central duct lined with UV-A LED strips, and lower collection chamber.</i>
 </p>
 
 <p align="center">
-  <img src="/assets/images/AgroLumen_Spodoptera/light-trap-internals.jpg" width="800"><br/>
+  <img src="./light-trap-internals.jpg" width="800"><br/>
   <i>Inside the upper enclosure: MYOSA Motherboard (red PCB, bottom-left) with its 0.96" OLED, ESP32 dev module (center), DS1307 RTC with CR2032 coin cell, microSD breakout, and a custom 15×15&nbsp;cm power perfboard with the MOSFET + optocoupler driver stage for the 12&nbsp;V loads.</i>
 </p>
 
 <p align="center">
-  <img src="/assets/images/AgroLumen_Spodoptera/ir-sensor-detail.jpg" width="800"><br/>
+  <img src="./ir-sensor-detail.jpg" width="800"><br/>
   <i>IR proximity sensor (MH-series module) mounted on the inner wall of the capture duct, surrounded by UV-A LED strips. This sensor detects each insect crossing the duct on a LOW→HIGH transition of its digital output.</i>
 </p>
 
 <p align="center">
-  <img src="/assets/images/AgroLumen_Spodoptera/capture-fan.jpg" width="800"><br/>
+  <img src="./capture-fan.jpg" width="800"><br/>
   <i>GDSTime brushless DC fan (model GDA8015, 12&nbsp;V / 0.18&nbsp;A) integrated into the upper enclosure. When the area counter reaches the configured threshold, the fan engages for a programmable duration and pulls insects into the collection chamber.</i>
 </p>
 
 <p align="center">
-  <img src="/assets/images/AgroLumen_Spodoptera/oled-live-data.jpg" width="800"><br/>
+  <img src="./oled-live-data.jpg" width="800"><br/>
   <i>SSD1306 OLED display in the BMP view, showing live readings from the trap — date/time from the DS1307 RTC, temperature, pressure, and the current LED / Fan states. A front-panel button cycles between this view, an operating-windows view, and STA connectivity info.</i>
 </p>
 
 ### Videos
 
 <video controls width="100%">
-  <source src="/agrolumen-spodoptera-demo.mp4" type="video/mp4">
+  <source src="./agrolumen-spodoptera-demo.mp4" type="video/mp4">
 </video>
+
+📹 If the video player above does not render in your viewer, watch the demo directly here: [agrolumen-spodoptera-demo.mp4](./agrolumen-spodoptera-demo.mp4)
 
 End-to-end demo: the IR sensor detects an insect crossing the duct, the on-board counter increments on the OLED, the capture fan engages once the threshold is met, and the same event is streamed to the public dashboard in under 3 seconds.
 
